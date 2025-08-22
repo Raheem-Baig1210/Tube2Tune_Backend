@@ -1,35 +1,3 @@
-# # yt_to_mp3.py
-# import sys
-# import yt_dlp
-
-# def download_audio(url, output_dir="downloads"):
-#     ydl_opts = {
-#     "format": "bestaudio/best",
-#     "outtmpl": filepath,
-#     "postprocessors": [{
-#         "key": "FFmpegExtractAudio",
-#         "preferredcodec": "mp3",
-#         "preferredquality": "192",
-#     }],
-#     "ffmpeg_location": r"C:\ffmpeg\ffmpeg-7.1.1-essentials_build\bin"  # 👈 put actual folder path here
-# }
-#     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-#         info = ydl.extract_info(url, download=True)
-#         return ydl.prepare_filename(info).rsplit(".", 1)[0] + ".mp3"
-
-# if __name__ == "__main__":
-#     url = sys.argv[1]  # Node.js passes the URL as an argument
-#     filepath = download_audio(url)
-#     print(filepath)  # Send back result to Node.js
-
-
-
-
-
-
-
-# yt_to_mp3.py
-# import sys
 import os
 import yt_dlp
 import sys
