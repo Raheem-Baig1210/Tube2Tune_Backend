@@ -1,7 +1,7 @@
-const { default: bcrypt } = require("bcryptjs");
+// const { default: bcrypt } = require("bcryptjs");
 const express =require("express")
 const jwt = require("jsonwebtoken")
-
+const bcrypt = require("bcryptjs")
 
 const responseGenerator = (success, message, data) => {
     let obj = {}

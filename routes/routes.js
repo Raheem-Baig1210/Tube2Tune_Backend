@@ -2,14 +2,14 @@ const express = require('express');
 const { spawn } = require("child_process");
 const path = require("path");
 const home = require('../controllers/home');
-const login = require("../controllers/login")
+const auth = require("../controllers/auth")
 const router = express.Router();
 
 
 router.get("/hello",home.hello)
 
-router.post("/register",login.register)
-router.post("/login",login.login)
+router.post("/register",auth.register)
+router.post("/login",auth.login)
 router.post("/convert",(req, res) => {
   const { url } = req.body;
   if (!url) {

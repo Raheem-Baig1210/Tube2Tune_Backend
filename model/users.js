@@ -11,4 +11,4 @@ const user_schema = new schema(
     {timestamps : true}
 )
 
-module.exports = mongoose.model("users",user_schema)
+module.exports = mongoose.model("Users",user_schema, "users")
