@@ -9,6 +9,7 @@ router.get("/hello",home.hello)
 
 router.post("/register",auth.register)
 router.post("/login",auth.login)
-router.post("/convert",isLoggesIn,home.homepage);
+// router.post("/convert",isLoggesIn,home.homepage);
+router.post("/convert",home.homepage);
 
 module.exports = router;

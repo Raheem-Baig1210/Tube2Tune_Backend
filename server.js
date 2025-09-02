@@ -2,13 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const fs = require("fs");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-
-app.listen(5050, () => console.log("Server started successfully...!!!"));
+app.use(cors());
 
 app.use(express.json());
+
+
+app.listen(5050, () => console.log("Server started successfully...!!!"));
 
 app.use(require("./routes/routes"));
 
