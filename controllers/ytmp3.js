@@ -138,7 +138,6 @@
 // // #     print(filepath)
 // // #   # Send back result to Node.js
 
-
 const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
@@ -151,12 +150,14 @@ async function downloadAudio(url) {
         fs.mkdirSync(outputDir);
       }
 
-      // Path to cookies.txt (make sure you upload this file to Render but NOT to GitHub)
-      const cookiesPath = path.join(__dirname, "../cookies.txt");
+      // Write cookies to a temporary file from environment variable
+      const cookiesPath = "/tmp/cookies.txt";
+      if (process.env.YT_COOKIES) {
+        fs.writeFileSync(cookiesPath, process.env.YT_COOKIES.replace(/\\n/g, "\n"));
+      }
 
-      // yt-dlp command with cookies
       const args = [
-        "--cookies", cookiesPath,   // ✅ Pass cookies to bypass login/age restriction
+        "--cookies", cookiesPath, // ✅ Use the cookies from secret
         "-x",
         "--audio-format", "mp3",
         "-o", `${outputDir}/%(title)s.%(ext)s`,
@@ -165,12 +166,10 @@ async function downloadAudio(url) {
 
       const process = spawn("yt-dlp", args);
 
-      // Log yt-dlp errors
       process.stderr.on("data", (data) => {
         console.error("yt-dlp error:", data.toString());
       });
 
-      // Log yt-dlp output (useful for debugging)
       process.stdout.on("data", (data) => {
         console.log("yt-dlp output:", data.toString());
       });
