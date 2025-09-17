@@ -164,17 +164,17 @@ async function downloadAudio(url) {
         url,
       ];
 
-      const process = spawn("yt-dlp", args);
+      const ytprocess = spawn("yt-dlp", args);
 
-      process.stderr.on("data", (data) => {
+      ytprocess.stderr.on("data", (data) => {
         console.error("yt-dlp error:", data.toString());
       });
 
-      process.stdout.on("data", (data) => {
+      ytprocess.stdout.on("data", (data) => {
         console.log("yt-dlp output:", data.toString());
       });
 
-      process.on("close", (code) => {
+      ytprocess.on("close", (code) => {
         if (code === 0) {
           resolve("Audio downloaded successfully");
         } else {
