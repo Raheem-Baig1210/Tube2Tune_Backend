@@ -149,11 +149,13 @@ async function downloadAudio(url) {
       if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir);
       }
+      console.log("Cookies length:", process.env.YT_COOKIES ? process.env.YT_COOKIES.length : "MISSING");
 
       // Write cookies to a temporary file from environment variable
       const cookiesPath = "/tmp/cookies.txt";
       if (process.env.YT_COOKIES) {
         fs.writeFileSync(cookiesPath, process.env.YT_COOKIES.replace(/\\n/g, "\n"));
+        console.log("✅ cookies.txt written to", cookiesPath);
       }
 
       const args = [
